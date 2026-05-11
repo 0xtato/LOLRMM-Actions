@@ -4,6 +4,7 @@ on:
   schedule:
     # Daily at 08:00 UTC
     - cron: '0 8 * * *'
+  workflow_dispatch:  # TEMPORARY — for test run only
 
 permissions:
   contents: write  # commit updated blocklists + known_tools.json
