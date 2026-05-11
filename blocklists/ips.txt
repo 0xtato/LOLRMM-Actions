@@ -1,0 +1,6 @@
+# LOLRMM IP Block List
+# Auto-maintained by .github/workflows/sync-lolrmm.yml
+# Format: one IP or CIDR per line
+# Last updated: see git log
+#
+# WARNING: Review entries before importing into enforcement tools.

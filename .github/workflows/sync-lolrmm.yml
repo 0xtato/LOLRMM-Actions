@@ -1,0 +1,37 @@
+name: Sync LOLRMM
+
+on:
+  schedule:
+    # Daily at 08:00 UTC
+    - cron: '0 8 * * *'
+
+permissions:
+  contents: write  # commit updated blocklists + known_tools.json
+  issues: write    # open GitHub Issues for new RMM tools
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        # Pinned to full commit SHA — tags are mutable and can be hijacked
+        # Verify: https://github.com/actions/checkout/commits
+        uses: actions/checkout@0c366fd6a839edf440554fa01a7085ccba70ac98
+
+      - name: Run sync script (stdlib only — no pip)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: python3 scripts/sync_lolrmm.py
+
+      - name: Commit updated files
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add known_tools.json blocklists/
+          # Only commit if there are actual changes
+          git diff --cached --quiet || git commit -m "chore: sync LOLRMM $(date -u +%Y-%m-%d)"
+          # Pull with rebase before pushing to avoid conflicts if two runs overlap
+          git pull --rebase origin main
+          git push

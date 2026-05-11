@@ -1,0 +1,8 @@
+# CODEOWNERS
+# Changes to the workflow and sync script require review from the repo owner.
+# This prevents unauthorized modification of the sync pipeline.
+#
+# Replace @0xtato with your GitHub username or team slug.
+
+.github/workflows/  @0xtato
+scripts/            @0xtato
