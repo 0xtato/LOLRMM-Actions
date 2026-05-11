@@ -5,3 +5,15 @@
 #
 # WARNING: Review entries before importing into enforcement tools.
 #          Wildcard entries (*.example.com) must be handled by your tool manually.
+rodex.cc
+www.rodex.cc
+<operator-controlled VPS hostname or IP>
+api.remsupp.com
+download.remsupp.com
+*.lunixar.com
+lunixar.com
+app.lunixar.com
+socket.lunixar.com
+downloads.lunixar.com
+devrmm.lunixar.com
+mymeetinggoogle.com

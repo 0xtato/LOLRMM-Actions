@@ -1,1 +1,13 @@
 tool_name,type,value,ports,date_added
+Rodex RMM,domain,rodex.cc,443,2026-05-11
+Rodex RMM,domain,www.rodex.cc,443,2026-05-11
+Rodex RMM,domain,<operator-controlled VPS hostname or IP>,443,2026-05-11
+RemSupp,domain,api.remsupp.com,443,2026-05-11
+RemSupp,domain,download.remsupp.com,443,2026-05-11
+Lunixar,domain,*.lunixar.com,23501,2026-05-11
+Lunixar,domain,lunixar.com,23501,2026-05-11
+Lunixar,domain,app.lunixar.com,23501,2026-05-11
+Lunixar,domain,socket.lunixar.com,23501,2026-05-11
+Lunixar,domain,downloads.lunixar.com,23501,2026-05-11
+Lunixar,domain,devrmm.lunixar.com,23501,2026-05-11
+Lunixar,domain,mymeetinggoogle.com,,2026-05-11
