@@ -11,3 +11,135 @@ Lunixar,domain,socket.lunixar.com,23501,2026-05-11
 Lunixar,domain,downloads.lunixar.com,23501,2026-05-11
 Lunixar,domain,devrmm.lunixar.com,23501,2026-05-11
 Lunixar,domain,mymeetinggoogle.com,,2026-05-11
+TrustConnect,domain,trustconnectsoftware.com,443,2026-05-19
+TrustConnect,domain,networkservice.cyou,443,2026-05-19
+Faronics Insight,domain,faronics.com,443,2026-05-19
+Faronics Insight,domain,www.faronics.com,443,2026-05-19
+Faronics Insight,domain,support.faronics.com,443,2026-05-19
+Faronics Insight,domain,docs.faronics.com,443,2026-05-19
+Faronics Insight,domain,user_managed,"1313,8080",2026-05-19
+ShellHub,domain,shellhub.io,"443,80",2026-05-19
+ShellHub,domain,cloud.shellhub.io,"443,80",2026-05-19
+ShellHub,domain,www.shellhub.io,"443,80",2026-05-19
+ShellHub,domain,*.shellhub.io,"443,80",2026-05-19
+LocalXpose,domain,localxpose.io,443,2026-05-19
+LocalXpose,domain,*.localxpose.io,443,2026-05-19
+LocalXpose,domain,api.localxpose.io,443,2026-05-19
+PiTunnel,domain,pitunnel.com,443,2026-05-19
+PiTunnel,domain,www.pitunnel.com,443,2026-05-19
+PiTunnel,domain,*.pitunnel.com,443,2026-05-19
+Monitic,domain,api.monitic.com,443,2026-05-19
+Monitic,domain,app.monitic.com,443,2026-05-19
+Monitic,domain,devapi.monitic.com,443,2026-05-19
+Monitic,domain,turn.monitic.com,"443,3478",2026-05-19
+Monitic,domain,monitic.com,443,2026-05-19
+Monitic,domain,www.monitic.com,443,2026-05-19
+Dataplicity,domain,dataplicity.com,443,2026-05-19
+Dataplicity,domain,www.dataplicity.com,443,2026-05-19
+Dataplicity,domain,*.dataplicity.com,443,2026-05-19
+Dataplicity,domain,*.wormhole.dataplicity.com,443,2026-05-19
+GLPI Agent,domain,N/A (listens on httpd-ip — default 0.0.0.0 — on the agent host),62354,2026-05-19
+GLPI Agent,domain,<operator-configured GLPI server>,"80,443",2026-05-19
+GLPI Agent,domain,glpi-project.org,443,2026-05-19
+GLPI Agent,domain,www.glpi-project.org,443,2026-05-19
+GLPI Agent,domain,nightly.glpi-project.org,443,2026-05-19
+GLPI Agent,domain,forum.glpi-project.org,443,2026-05-19
+GLPI Agent,domain,glpi-network.com,443,2026-05-19
+GLPI Agent,domain,services.glpi-network.com,443,2026-05-19
+GLPI Agent,domain,github.com,443,2026-05-19
+GLPI Agent,domain,objects.githubusercontent.com,443,2026-05-19
+Faronics Deep Freeze,domain,deepfreeze.com,443,2026-05-19
+Faronics Deep Freeze,domain,www.deepfreeze.com,443,2026-05-19
+Faronics Deep Freeze,domain,faronicscloud.com,443,2026-05-19
+Faronics Deep Freeze,domain,cloud.faronics.com,443,2026-05-19
+Faronics Deep Freeze,domain,upd.faronicslabs.com,"80,443",2026-05-19
+Faronics Deep Freeze,domain,faronics.com,"80,443",2026-05-19
+Faronics Deep Freeze,domain,www.faronics.com,"80,443",2026-05-19
+Teramind,domain,*.teramind.co,443,2026-05-19
+Teramind,domain,teramind.co,443,2026-05-19
+Teramind,domain,www.teramind.co,443,2026-05-19
+Teramind,domain,rt.teramind.co,443,2026-05-19
+Teramind,domain,sentry.dev.teramind.co,443,2026-05-19
+Teramind,domain,<on-prem-master-server-host>,10000,2026-05-19
+Teramind,domain,<on-prem-app-server-host>,"10000,10001,10500,11000",2026-05-19
+VIZOR,domain,<operator-configured Vector Discovery Server URL>,"443,80",2026-05-19
+VIZOR,domain,vizor.cloud,443,2026-05-19
+VIZOR,domain,www.vizor.cloud,443,2026-05-19
+VIZOR,domain,vector-networks.com,443,2026-05-19
+VIZOR,domain,www.vector-networks.com,443,2026-05-19
+VIZOR,domain,metaquest.com,443,2026-05-19
+VIZOR,domain,mail.metaquest.com,443,2026-05-19
+VIZOR,domain,www.metaquest.com,443,2026-05-19
+VIZOR,domain,downloads.vector-networks.com,443,2026-05-19
+Nezha,domain,user_managed,"5555,443",2026-05-19
+Nezha,domain,github.com,443,2026-05-19
+Nezha,domain,raw.githubusercontent.com,443,2026-05-19
+Nezha,domain,nezha.wiki,443,2026-05-19
+Nezha,domain,nezhahq.github.io,443,2026-05-19
+Nezha,domain,c.mid.al,"443,53762",2026-05-19
+Nezha,domain,gd.bj2.xyz,"443,53762",2026-05-19
+Nezha,domain,rism.pages.dev,"443,53762",2026-05-19
+Faronics Deploy,domain,deploy.faronics.com,443,2026-05-19
+Faronics Deploy,domain,www.faronicsdeploy.com,443,2026-05-19
+Faronics Deploy,domain,faronicscloud.com,443,2026-05-19
+Faronics Deploy,domain,nv0mddxkh7.execute-api.us-west-2.amazonaws.com,443,2026-05-19
+Faronics Deploy,domain,29qoj3q0yf.execute-api.us-west-2.amazonaws.com,443,2026-05-19
+Faronics Deploy,domain,8z5x4rqbxi.execute-api.eu-west-1.amazonaws.com,443,2026-05-19
+Faronics Deploy,domain,1wuccjc4a3.execute-api.eu-west-1.amazonaws.com,443,2026-05-19
+Faronics Deploy,domain,faronics-deploy-na-production-installers.s3.us-west-2.amazonaws.com,443,2026-05-19
+Faronics Deploy,domain,faronics-deploy-int-production-installers.s3.eu-west-1.amazonaws.com,443,2026-05-19
+Faronics Deploy,domain,remotepro-us-west-2.faronics.com,443,2026-05-19
+Faronics Deploy,domain,remotepro-us-east-1.faronics.com,443,2026-05-19
+Faronics Deploy,domain,remotepro-ca-central-1.faronics.com,443,2026-05-19
+Faronics Deploy,domain,remotepro-eu-west-1.faronicsdeploy.com,443,2026-05-19
+Faronics Deploy,domain,remotepro-ap-southeast-1.faronicsdeploy.com,443,2026-05-19
+Faronics Deploy,domain,remotepro-sa-east-1.faronicsdeploy.com,443,2026-05-19
+Faronics Deploy,domain,faronics.com,443,2026-05-19
+Faronics Deploy,domain,support.faronics.com,443,2026-05-19
+Faronics Deploy,domain,docs.faronics.com,443,2026-05-19
+Faronics Deploy,domain,upd.faronicslabs.com,443,2026-05-19
+Faronics Core,domain,upd.faronicslabs.com,"80,443",2026-05-19
+Faronics Core,domain,faronics.com,"80,443",2026-05-19
+Faronics Core,domain,www.faronics.com,"80,443",2026-05-19
+Faronics Core,domain,user_managed,"7751,7752",2026-05-19
+InvGate,domain,invgate.com,443,2026-05-19
+InvGate,domain,www.invgate.com,443,2026-05-19
+InvGate,domain,*.invgate.net,443,2026-05-19
+InvGate,domain,invgate.net,443,2026-05-19
+InvGate,domain,lb-insight-001.invgate.net,443,2026-05-19
+InvGate,domain,trust.invgate.com,443,2026-05-19
+InvGate,domain,trust-access.invgate.com,443,2026-05-19
+InvGate,domain,instances-info.invgate.com,443,2026-05-19
+InvGate,domain,instances-list.invgate.com,443,2026-05-19
+InvGate,domain,releases.invgate.com,443,2026-05-19
+InvGate,domain,docs.invgate.net,443,2026-05-19
+InvGate,domain,help.invgate.com,443,2026-05-19
+TiFLUX,domain,agent.tiflux.com,443,2026-05-19
+TiFLUX,domain,app.tiflux.com,443,2026-05-19
+TiFLUX,domain,tiflux.com,443,2026-05-19
+TiFLUX,domain,www.tiflux.com,443,2026-05-19
+TiFLUX,domain,tiflux.com.br,443,2026-05-19
+TiFLUX,domain,www.tiflux.com.br,443,2026-05-19
+TiFLUX,domain,*.tiflux.com,443,2026-05-19
+TiFLUX,domain,my.splashtop.com,443,2026-05-19
+Freshservice,domain,fstools.freshservice.com,443,2026-05-19
+Freshservice,domain,*.freshservice.com,443,2026-05-19
+Freshservice,domain,freshservice.com,443,2026-05-19
+Freshservice,domain,www.freshservice.com,443,2026-05-19
+Freshservice,domain,fstools.freshasset.com,443,2026-05-19
+Freshservice,domain,freshasset.com,443,2026-05-19
+Freshservice,domain,*.myfreshworks.com,443,2026-05-19
+Freshservice,domain,*.freshworksapi.com,443,2026-05-19
+Freshservice,domain,*.freshworks.com,443,2026-05-19
+Freshservice,domain,*.freshconnect.io,443,2026-05-19
+Freshservice,domain,api.fdcollab.com,443,2026-05-19
+Freshservice,domain,*.fdcollab.com,443,2026-05-19
+Freshservice,domain,*.freshchat.com,443,2026-05-19
+Freshservice,domain,*.webpush.freshchat.com,443,2026-05-19
+Freshservice,domain,apicdn-wchat.freshchat.com,443,2026-05-19
+Freshservice,domain,*.rtschannel.com,443,2026-05-19
+Freshservice,domain,*.freshdev.io,443,2026-05-19
+Freshservice,domain,static.freshdev.io,443,2026-05-19
+Freshservice,domain,*.freshcloud.io,443,2026-05-19
+Freshservice,domain,*.in-freshbots.ai,443,2026-05-19
+Freshservice,domain,<internal-customer-ranges>,"22,135,161,445",2026-05-19
