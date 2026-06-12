@@ -149,3 +149,10 @@ static.freshdev.io
 *.freshcloud.io
 *.in-freshbots.ai
 <internal-customer-ranges>
+helpwire.app
+get.helpwire.app
+api.helpwire.app
+staging.helpwire.app
+account.flexihub.com
+stun.helpwire.app
+stunserver.stunprotocol.org

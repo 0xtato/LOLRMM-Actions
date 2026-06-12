@@ -143,3 +143,10 @@ Freshservice,domain,static.freshdev.io,443,2026-05-19
 Freshservice,domain,*.freshcloud.io,443,2026-05-19
 Freshservice,domain,*.in-freshbots.ai,443,2026-05-19
 Freshservice,domain,<internal-customer-ranges>,"22,135,161,445",2026-05-19
+HelpWire,domain,helpwire.app,443,2026-06-12
+HelpWire,domain,get.helpwire.app,443,2026-06-12
+HelpWire,domain,api.helpwire.app,443,2026-06-12
+HelpWire,domain,staging.helpwire.app,443,2026-06-12
+HelpWire,domain,account.flexihub.com,443,2026-06-12
+HelpWire,domain,stun.helpwire.app,3478,2026-06-12
+HelpWire,domain,stunserver.stunprotocol.org,3478,2026-06-12
