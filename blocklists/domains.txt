@@ -156,3 +156,7 @@ staging.helpwire.app
 account.flexihub.com
 stun.helpwire.app
 stunserver.stunprotocol.org
+remotepulse.io
+www.remotepulse.io
+ninite.com
+*.ninite.com

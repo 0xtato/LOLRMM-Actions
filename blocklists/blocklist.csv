@@ -150,3 +150,7 @@ HelpWire,domain,staging.helpwire.app,443,2026-06-12
 HelpWire,domain,account.flexihub.com,443,2026-06-12
 HelpWire,domain,stun.helpwire.app,3478,2026-06-12
 HelpWire,domain,stunserver.stunprotocol.org,3478,2026-06-12
+RemotePulse,domain,remotepulse.io,443,2026-07-09
+RemotePulse,domain,www.remotepulse.io,443,2026-07-09
+Ninite Pro (Ninite Agent),domain,ninite.com,443,2026-07-09
+Ninite Pro (Ninite Agent),domain,*.ninite.com,443,2026-07-09
