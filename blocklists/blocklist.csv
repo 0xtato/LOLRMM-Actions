@@ -154,3 +154,8 @@ RemotePulse,domain,remotepulse.io,443,2026-07-09
 RemotePulse,domain,www.remotepulse.io,443,2026-07-09
 Ninite Pro (Ninite Agent),domain,ninite.com,443,2026-07-09
 Ninite Pro (Ninite Agent),domain,*.ninite.com,443,2026-07-09
+Teleport Connect,domain,cdn.teleport.dev,443,2026-08-19
+Teleport Connect,domain,reporting-connect.teleportinfra.sh,443,2026-08-19
+Teleport Connect,domain,usage.teleport.dev,443,2026-08-19
+Teleport Connect,domain,*.teleport.sh,443,2026-08-19
+ControlR,domain,demo.controlr.app,443,2026-08-19
