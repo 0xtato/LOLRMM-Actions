@@ -165,3 +165,7 @@ reporting-connect.teleportinfra.sh
 usage.teleport.dev
 *.teleport.sh
 demo.controlr.app
+breezermm.com
+breeze.app
+us.2breeze.app
+eu.2breeze.app

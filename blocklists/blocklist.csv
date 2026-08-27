@@ -159,3 +159,7 @@ Teleport Connect,domain,reporting-connect.teleportinfra.sh,443,2026-08-19
 Teleport Connect,domain,usage.teleport.dev,443,2026-08-19
 Teleport Connect,domain,*.teleport.sh,443,2026-08-19
 ControlR,domain,demo.controlr.app,443,2026-08-19
+BreezeRMM,domain,breezermm.com,443,2026-08-27
+BreezeRMM,domain,breeze.app,443,2026-08-27
+BreezeRMM,domain,us.2breeze.app,443,2026-08-27
+BreezeRMM,domain,eu.2breeze.app,443,2026-08-27
