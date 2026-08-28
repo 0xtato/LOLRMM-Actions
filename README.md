@@ -1,6 +1,6 @@
 # lolrmm
 
-Automated alerting system for [LOLRMM](https://lolrmm.io) — a community-maintained catalog of Remote Monitoring and Management (RMM) tools used in threat actor campaigns.
+Automated alerting system for [LOLRMM](https://lolrmm.io) — a community-maintained catalog of Remote Monitoring and Management (RMM) tools used in threat actor campaigns with GitHub Actions.
 
 ## What this does
 
