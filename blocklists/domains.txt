@@ -169,3 +169,6 @@ breezermm.com
 breeze.app
 us.2breeze.app
 eu.2breeze.app
+opsbridge.digital
+set.me
+*.set.me
