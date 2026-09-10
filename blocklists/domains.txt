@@ -172,3 +172,4 @@ eu.2breeze.app
 opsbridge.digital
 set.me
 *.set.me
+api.rmmmax.com
