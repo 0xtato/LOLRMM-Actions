@@ -173,3 +173,12 @@ opsbridge.digital
 set.me
 *.set.me
 api.rmmmax.com
+api-ca-1.lavawall.com
+lavawinupdate.lavawall.com
+caremote1.lavawall.com
+app.zecurit.com
+dms.zecurit.com
+d1m8kha1zyjal6.cloudfront.net
+lisa.rg-supervision.com
+api.rg-supervision.com
+dashboard.rg-supervision.com

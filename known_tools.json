@@ -486,6 +486,235 @@
     ]
   },
   {
+    "Name": "Lavawall",
+    "Category": "RMM",
+    "Description": "Lavawall is a commercial remote monitoring, management, and security platform developed by ThreeShield Information Security Corporation. It supports Windows, macOS, and Linux endpoints, with browser-based remote desktop control, background administration, remote shell access, file transfer, scripting, patch management, and device inventory. Windows deployments use LavawallWin.exe and a separate remote-support component. Signed Windows agent samples have been submitted under Zoom and Adobe installer names; those names alone do not establish malicious use and are not included as detection artifacts. An unexpected installation should be investigated in the context of the organization's approved remote-access tools.\n",
+    "Author": "Michael Haag",
+    "Created": "2026-09-21",
+    "LastModified": "2026-09-21",
+    "Details": {
+      "Website": "https://lavawall.com/",
+      "PEMetadata": [
+        {
+          "Filename": "LavawallWin.exe",
+          "OriginalFileName": "LavawallWin.dll",
+          "Description": "LavawallWin",
+          "Product": "Lavawall Windows Agent"
+        }
+      ],
+      "Privileges": "Administrator for installation; SYSTEM on Windows; root on macOS/Linux",
+      "Free": false,
+      "Verification": "Vendor documentation confirms the RMM capabilities and supported platforms. Windows artifacts were checked against the signed LavawallWin.exe version 1.0.162.440 and the vendor's remote-support archive version 2.0.0.16. File hashes and Authenticode signatures were verified locally without executing the agents. Installation, service, task, registry, and API details come from static analysis; temporary extraction paths are corroborated by sandbox reports. macOS/Linux installation artifacts and a complete remote session were not independently tested. The commercial platform offers a free trial.\n",
+      "SupportedOS": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "Capabilities": [
+        "Remote desktop control",
+        "Background administration",
+        "Remote shell access",
+        "File transfer",
+        "Remote script execution",
+        "Application and operating-system patch management",
+        "Hardware and software inventory",
+        "Endpoint health and configuration monitoring"
+      ],
+      "Vulnerabilities": [],
+      "InstallationPaths": [
+        "C:\\Program Files\\Lavawall\\LavawallWin.exe",
+        "C:\\Program Files (x86)\\Lavawall\\LavawallWin.exe",
+        "C:\\Lavawall\\LavawallWin.exe"
+      ]
+    },
+    "Artifacts": {
+      "Disk": [
+        {
+          "File": "*\\Lavawall\\LavawallWin.exe",
+          "Description": "Canonically named Windows management agent. The inspected code selects Program Files, then Program Files (x86), then C:\\Lavawall as fallback locations. Initial installation can preserve the launched executable's basename.\n",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\Lavawall\\remote-agent\\remote-agent.exe",
+          "Description": "Remote-support executable extracted beneath the management agent's installation directory. Keep the Lavawall directory context because remote-agent.exe is not a product-specific filename.\n",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\Lavawall\\remote-agent\\uihelper.exe",
+          "Description": "Remote-support UI helper shipped alongside remote-agent.exe in the signed vendor package. The filename alone is not specific to Lavawall.\n",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\Lavawall\\LavawallCheckAndStartService.ps1",
+          "Description": "PowerShell watchdog script that starts the management service if it is stopped.",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\Lavawall\\Storage\\UserAgentData.db",
+          "Description": "Local SQLite storage used by the Windows management agent.",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\LavawallWin.dll",
+          "Description": "Managed assembly extracted by the self-contained Windows executable, observed in sandbox reports. Parent directories vary with the launched filename and bundle extraction directory.\n",
+          "OS": "Windows",
+          "Example": [
+            "C:\\Users\\user\\AppData\\Local\\Temp\\.net\\file\\1bb0\\LavawallWin.dll"
+          ]
+        },
+        {
+          "File": "*\\LavawallWin.runtimeconfig.json",
+          "Description": "Runtime configuration extracted alongside the managed assembly in sandbox reports.",
+          "OS": "Windows",
+          "Example": [
+            "C:\\Users\\user\\AppData\\Local\\Temp\\.net\\file\\1bb0\\LavawallWin.runtimeconfig.json"
+          ]
+        }
+      ],
+      "EventLog": [],
+      "Registry": [
+        {
+          "Path": "HKLM\\SOFTWARE\\WOW6432Node\\LavaWall\\Agent",
+          "Description": "Agent registration and configuration key, including DeviceId, CompanyGuid, and IsRegistered values, confirmed in the inspected code.\n"
+        },
+        {
+          "Path": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Lavawall Support Agent",
+          "Description": "Automatic-start Windows management service. Its description is Patch and configuration monitoring and management.\n"
+        },
+        {
+          "Path": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\LavaWallRemoteAgent",
+          "Description": "Windows remote-support service identified in both inspected agent components."
+        }
+      ],
+      "Network": [
+        {
+          "Description": "Default Windows management API and secure WebSocket endpoint embedded in the inspected agent, using /go/ and /go/ws respectively. These are code-confirmed endpoints, not a claim of observed sandbox connections.\n",
+          "Domains": [
+            "api-ca-1.lavawall.com"
+          ],
+          "Ports": [
+            443
+          ]
+        },
+        {
+          "Description": "Vendor remote-support update host. The management agent retrieves version.json, which identifies the remote-agent.zip download and hash.\n",
+          "Domains": [
+            "lavawinupdate.lavawall.com"
+          ],
+          "Ports": [
+            443
+          ]
+        },
+        {
+          "Description": "Default remote-support server and port embedded in the signed remote-agent.exe version 2.0.0.16. Live session traffic was not tested.\n",
+          "Domains": [
+            "caremote1.lavawall.com"
+          ],
+          "Ports": [
+            8443
+          ]
+        }
+      ],
+      "Other": [
+        {
+          "Type": "ServiceName",
+          "Value": "Lavawall Support Agent"
+        },
+        {
+          "Type": "ServiceName",
+          "Value": "LavaWallRemoteAgent"
+        },
+        {
+          "Type": "ScheduledTask",
+          "Value": "LavawallCheckAndStartServiceTask"
+        },
+        {
+          "Type": "ScheduledTaskBehavior",
+          "Value": "Runs LavawallCheckAndStartService.ps1 as SYSTEM every five minutes to start the management service if stopped, as defined in the agent.\n"
+        },
+        {
+          "Type": "Mutex",
+          "Value": "Global\\LavawallAgentCompanyCredentialsV2"
+        },
+        {
+          "Type": "ObservedAgentSHA256",
+          "Value": "1e395934cbef22846dd0dd2daf868429b0a5b86313f9721543b03a66cfc25e77"
+        },
+        {
+          "Type": "ObservedRemoteAgentSHA256",
+          "Value": "d494ac927c3a98f67a035a418c5e89e9a97397a837fb8cc9bedbb44d25ad3670"
+        },
+        {
+          "Type": "ObservedUIHelperSHA256",
+          "Value": "3c56c3cca03efdcd2044a48d588ab27f68fa1b7e577874a490ff4ada241cec3e"
+        }
+      ]
+    },
+    "Detections": [],
+    "References": [
+      "https://lavawall.com/rmm/",
+      "https://www.lavawall.com/remote-support/",
+      "https://www.lavawall.com/faq/",
+      "https://console.lavawall.com/FAQ.php",
+      "https://lavawinupdate.lavawall.com/version.json",
+      "https://lavawinupdate.lavawall.com/remote-agent.zip",
+      "https://www.virustotal.com/gui/file/1e395934cbef22846dd0dd2daf868429b0a5b86313f9721543b03a66cfc25e77",
+      "https://www.virustotal.com/gui/file/a3b3eec0fbd1108c3cb476f5495f77dcd19b4d40d23e8240c0e983acc401bce0",
+      "https://www.virustotal.com/gui/file/efd86ad34b94514d5416f40bc3de42c2c7a174f82a9a5ce70c1806f062ce4de7"
+    ],
+    "Acknowledgement": [
+      {
+        "Person": "patialavii",
+        "Handle": "@patialavii"
+      }
+    ],
+    "CodeSigning": {
+      "search_names": [
+        "LavawallWin.exe",
+        "LavawallWin.dll"
+      ],
+      "company_names": [
+        "ThreeShield Information Security Corporation"
+      ],
+      "signer_names": [
+        "ThreeShield Information Security Corporation"
+      ],
+      "certificates": [
+        {
+          "signer_name": "ThreeShield Information Security Corporation",
+          "certificate_thumbprint": "BA19F4C2488F6CA83A23BB4B5DC765991E699080",
+          "issuer": "DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1",
+          "valid_from": "2026-01-19T00:00:00Z",
+          "valid_to": "2029-01-18T23:59:59Z",
+          "tbs_sha256": "850a06b73b2efb25a211b84650c0ff6ddb299eb351639095cc93948fbf243430",
+          "tbs_sha1": "30c4804959fc95cc1a42252672bffac612a24d69",
+          "src_file_sha256": "1e395934cbef22846dd0dd2daf868429b0a5b86313f9721543b03a66cfc25e77",
+          "src_file_path": "LavawallWin.exe",
+          "src_file_company": "ThreeShield Information Security Corporation"
+        }
+      ]
+    },
+    "FileHashes": {
+      "authenticode": [
+        {
+          "file_name": "LavawallWin.exe",
+          "sha256": "e577759c8198c9597527022502d044e6ee396e2faa55a5fa7bdc12578cc053fc",
+          "sha1": null
+        },
+        {
+          "file_name": "remote-agent.exe",
+          "sha256": "b2cf0fa2f55b8ee50133d2d6e692cc1f12514e85482ec637fb00ae9148d5b9fa",
+          "sha1": null
+        },
+        {
+          "file_name": "uihelper.exe",
+          "sha256": "f30b6ef99434bc51672182b4baefc27ba7d0739cab5777ab4682edd032705922",
+          "sha1": null
+        }
+      ]
+    }
+  },
+  {
     "Name": "RMMmax",
     "Category": "RMM",
     "Description": "RMMmax is a remote monitoring and management platform that integrates with existing RMM products or manages devices through its standalone agents. It supports remote command and script execution, software deployment, patch management, and system monitoring across Windows, macOS, and Linux.\n",
@@ -1645,7 +1874,7 @@
     "Description": "ShellHub (cloud.shellhub.io / shellhub.io) is an open-source SSH gateway that enrolls devices via a per-tenant install script and gives operators browser-based remote terminal access through the ShellHub web dashboard. The agent installs via `curl -sSf \"https://cloud.shellhub.io/install.sh?tenant_id=<TENANT_ID>\" | sh` and registers the host into the operator's tenant; subsequent SSH connections are brokered through the ShellHub cloud over the persistent agent connection, with no inbound firewall change required on the device. Catalogued by the LOTTunnels project under the \"shell access\" category; documentation explicitly notes potential misuse by \"insiders as well as threat actors\" for \"a variety of malicious tasks\". Both a hosted SaaS (cloud.shellhub.io) and a self-hostable Docker deployment exist.\n",
     "Author": "@MHaggis",
     "Created": "2026-05-18",
-    "LastModified": "2026-05-18",
+    "LastModified": "2026-09-22",
     "Details": {
       "Website": "https://shellhub.io/",
       "PEMetadata": [
@@ -1729,16 +1958,8 @@
     },
     "Detections": [
       {
-        "Sigma": "https://github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/shellhub_files_sigma.yml",
-        "Description": "Detects potential file activity of ShellHub RMM tool"
-      },
-      {
         "Sigma": "https://github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/shellhub_network_sigma.yml",
         "Description": "Detects potential network activity of ShellHub RMM tool"
-      },
-      {
-        "Sigma": "https://github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/shellhub_processes_sigma.yml",
-        "Description": "Detects potential process activity of ShellHub RMM tool"
       }
     ],
     "References": [
@@ -1908,6 +2129,361 @@
     "Detections": [],
     "References": [],
     "Acknowledgement": []
+  },
+  {
+    "Name": "Zecurit",
+    "Category": "RMM",
+    "Description": "Zecurit is a cloud-based endpoint management and remote monitoring and management platform for Windows, macOS, and Linux. It provides unattended remote access, file transfer, remote commands and scripts, software deployment, patch management, and hardware and software inventory. A Zoom-themed phishing delivery reported by @patialavii used zoominstaller.exe to deliver the Zecurit Windows agent. The reported payload contains Zecurit management and remote-access components; the lure filename is not a product-specific detection artifact. Investigate unexpected installations against the organization's approved remote-access tools.\n",
+    "Author": "Michael Haag",
+    "Created": "2026-09-22",
+    "LastModified": "2026-09-22",
+    "Details": {
+      "Website": "https://zecurit.com/",
+      "PEMetadata": {},
+      "Privileges": "Administrator for installation; Local System on Windows; root on macOS/Linux",
+      "Free": true,
+      "Verification": "Vendor documentation confirms the RMM capabilities and supported platforms. The reported installer SHA256 was verified and its embedded MSI and agent archive were extracted without executing the software. Windows paths, registry keys, and network endpoints were corroborated with execution reports. Extracted ZecuritAgentService.exe, ZecuritAgentRegister.exe, ZecuritRemoteTools.exe, and ZecuritScreenReaderService.exe have locally verified Authenticode signatures. The outer renamed installer's signature could not be validated; its embedded certificate alone does not establish a valid signature. Those four extracted executables have no PE version metadata. The phishing delivery chain is attributed to the reporter. Separately obtained zecurit_agent_2.48.bin (Linux) and zecurit_agent_1.50.pkg (macOS) were statically extracted. Their scripts, service definitions, and Ghidra analysis of native installer helpers establish the platform-specific artifacts below. The macOS package passes Apple signature and notarization checks. No Linux package signature was independently established. Live installation and remote sessions were not tested. Free Asset Manager and Remote Access editions are available alongside paid plans.\n",
+      "SupportedOS": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "Capabilities": [
+        "Attended and unattended remote desktop access",
+        "Remote command and script execution",
+        "File transfer",
+        "Remote registry, service, and process management on Windows",
+        "Software deployment",
+        "Operating-system and application patch management",
+        "Hardware and software inventory",
+        "Endpoint monitoring and configuration management"
+      ],
+      "Vulnerabilities": [],
+      "InstallationPaths": [
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritAgentService.exe",
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritAgentRegister.exe",
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritAgentTray.exe",
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritAgentAssetMgr.exe",
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritLiveNotifier.exe",
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritCommandProcessor.exe",
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritRemoteTools.exe",
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritScreenReaderService.exe",
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritScreenReaderApp.exe",
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritScreenReaderAppUI.exe",
+        "C:\\Program Files\\Zecurit\\Agent\\ZecuritApplicationControlService.exe",
+        "C:\\Windows\\Temp\\Zecurit\\ZecuritAgentUpgrader.exe",
+        "/usr/local/zecurit_agent/bin/agentService",
+        "/usr/local/zecurit_agent/bin/commandProcessor",
+        "/usr/local/zecurit_agent/bin/installer",
+        "/Library/zecurit_agent/bin/Service",
+        "/Library/zecurit_agent/bin/CommandProcessor",
+        "/Library/zecurit_agent/bin/Installer",
+        "/Library/zecurit_agent/bin/ZecuritAccess.app/Contents/MacOS/ZecuritAccess"
+      ]
+    },
+    "Artifacts": {
+      "Disk": [
+        {
+          "File": "*\\Zecurit\\Agent\\ZecuritAgentService.exe",
+          "Description": "Windows management service executable included in the extracted agent archive.",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\Zecurit\\Agent\\ZecuritAgentRegister.exe",
+          "Description": "Agent registration executable invoked by the installer helper.",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\Zecurit\\Agent\\ZecuritRemoteTools.exe",
+          "Description": "Remote-tools component included in the extracted Windows agent archive.",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\Zecurit\\Agent\\ZecuritScreenReaderService.exe",
+          "Description": "Remote-access service component included in the extracted Windows agent archive.",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\Zecurit\\Agent\\Logs\\agent_service.log",
+          "Description": "Windows agent service log observed under the installed agent directory.",
+          "OS": "Windows",
+          "Example": [
+            "C:\\Program Files\\Zecurit\\Agent\\Logs\\agent_service.log"
+          ]
+        },
+        {
+          "File": "*\\Zecurit\\Agent\\Logs\\agent_cmd_handler.log",
+          "Description": "Command-handler log observed under the installed agent directory.",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\Zecurit\\Agent\\Storage\\AgentSettings.json",
+          "Description": "Agent settings file referenced by the service and observed in execution reports.",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\Zecurit\\ZecuritAgentUpgrader.exe",
+          "Description": "Agent upgrade executable staged beneath the Windows temporary directory.",
+          "OS": "Windows",
+          "Example": [
+            "C:\\Windows\\Temp\\Zecurit\\ZecuritAgentUpgrader.exe"
+          ]
+        },
+        {
+          "File": "*\\Zecurit\\zecurit_windows_agent.exe",
+          "Description": "Downloaded update installer observed with /SILENT /NORESTART arguments.",
+          "OS": "Windows",
+          "Example": [
+            "C:\\Windows\\Temp\\Zecurit\\zecurit_windows_agent.exe"
+          ]
+        },
+        {
+          "File": "*\\ZecuritAgentInstaller.msi",
+          "Description": "Embedded Windows installer package extracted by the reported Inno Setup wrapper.",
+          "OS": "Windows",
+          "Example": [
+            "C:\\Windows\\Temp\\ZecuritAgentInstaller.msi"
+          ]
+        },
+        {
+          "File": "/usr/local/zecurit_agent/bin/agentService",
+          "Description": "Linux agent executable. The packaged systemd unit runs it with -s as root and Restart=always. Path confirmed in the 2.48 package.\n",
+          "OS": "Linux"
+        },
+        {
+          "File": "/usr/local/zecurit_agent/bin/commandProcessor",
+          "Description": "Command-processing executable copied by the Linux installation script.",
+          "OS": "Linux"
+        },
+        {
+          "File": "/usr/local/zecurit_agent/bin/installer",
+          "Description": "Native Linux installer helper. After successful registration, its install handler copies, enables, and starts zecurit_agent.service.\n",
+          "OS": "Linux"
+        },
+        {
+          "File": "/etc/systemd/system/zecurit_agent.service",
+          "Description": "systemd unit installed from the agent's bin directory. Ghidra confirms the destination path and systemctl enable/start calls in the installer.\n",
+          "OS": "Linux"
+        },
+        {
+          "File": "/usr/local/zecurit_agent/config/server.json",
+          "Description": "Enrollment configuration copied into the default Linux installation directory.",
+          "OS": "Linux"
+        },
+        {
+          "File": "/usr/local/zecurit_agent/RemoveAgent.sh",
+          "Description": "Linux removal script invoking bin/installer uninstall.",
+          "OS": "Linux"
+        },
+        {
+          "File": "/Library/zecurit_agent/bin/Service",
+          "Description": "macOS agent executable launched as root by the packaged service launch daemon.",
+          "OS": "macOS"
+        },
+        {
+          "File": "/Library/zecurit_agent/bin/CommandProcessor",
+          "Description": "Command-processing executable in the macOS package payload.",
+          "OS": "macOS"
+        },
+        {
+          "File": "/Library/zecurit_agent/bin/Installer",
+          "Description": "Native macOS installer helper invoked by the package postinstall script.",
+          "OS": "macOS"
+        },
+        {
+          "File": "/Library/zecurit_agent/bin/ZecuritAccess.app/Contents/MacOS/ZecuritAccess",
+          "Description": "Zecurit access application included in the macOS package payload.",
+          "OS": "macOS"
+        },
+        {
+          "File": "/Library/zecurit_agent/bin/ZecuritInventory.app/Contents/MacOS/ZecuritInventory",
+          "Description": "Zecurit inventory application included in the macOS package payload.",
+          "OS": "macOS"
+        },
+        {
+          "File": "/Library/LaunchDaemons/com.zecurit_agent.service.plist",
+          "Description": "macOS launch daemon copied by the package postinstall script. Its Label is com.zecurit.service, with RunAtLoad and KeepAlive enabled.\n",
+          "OS": "macOS"
+        }
+      ],
+      "EventLog": [],
+      "Registry": [
+        {
+          "Path": "HKLM\\SOFTWARE\\Zecurit\\Agent",
+          "Description": "Windows agent configuration key. AgentDetails holds values such as agent_version, polling_interval, and agentDownloadURL. The product key is present in the extracted code and writes were observed in execution reports.\n"
+        }
+      ],
+      "Network": [
+        {
+          "Description": "Vendor application server observed in Windows agent command-line configuration and outbound HTTPS traffic. This host also serves the legitimate web console; a connection alone does not establish abuse.\n",
+          "Domains": [
+            "app.zecurit.com"
+          ],
+          "Ports": [
+            443
+          ]
+        },
+        {
+          "Description": "Vendor endpoint observed in the reported Windows agent's outbound HTTPS traffic.",
+          "Domains": [
+            "dms.zecurit.com"
+          ],
+          "Ports": [
+            443
+          ]
+        },
+        {
+          "Description": "Specific distribution used for agent updates. An observed agentDownloadURL points to /agent-directory/windows-main/zecurit_agent_3.22.exe on this host. The shared CloudFront parent domain is not a product indicator.\n",
+          "Domains": [
+            "d1m8kha1zyjal6.cloudfront.net"
+          ],
+          "Ports": [
+            443
+          ]
+        }
+      ],
+      "Other": [
+        {
+          "Type": "ObservedServiceName",
+          "Value": "Zecurit Agent"
+        },
+        {
+          "Type": "LinuxSystemdUnit",
+          "Value": "zecurit_agent.service"
+        },
+        {
+          "Type": "MacOSLaunchDaemonLabel",
+          "Value": "com.zecurit.service"
+        },
+        {
+          "Type": "MacOSPackageIdentifier",
+          "Value": "com.zecurit_agent.app"
+        },
+        {
+          "Type": "MacOSAccessBundleIdentifier",
+          "Value": "com.Zecurit.ZecuritAccess"
+        },
+        {
+          "Type": "MacOSInstallerSigner",
+          "Value": "Developer ID Installer: ZECURIT TECHNOLOGIES PRIVATE LIMITED (DM7CUTNR64)"
+        },
+        {
+          "Type": "MacOSTeamIdentifier",
+          "Value": "DM7CUTNR64"
+        },
+        {
+          "Type": "InspectedLinuxPackageSHA256",
+          "Value": "aab8cb5e93ae707a9b041cf98091b8c76331aa2efe0d6e7bf08396ccabcb2d2e"
+        },
+        {
+          "Type": "InspectedMacOSPackageSHA256",
+          "Value": "d148fadb4578a2c0a656aef74a6da6a6e6c6ce997fca1990c39823c3660b798a"
+        },
+        {
+          "Type": "PlatformArtifactScope",
+          "Value": "macOS/Linux indicators come from separate packages, not from the reported Windows phishing payload. Linux paths describe the default installation; although the shell wrapper accepts --path, the inspected native helper and systemd unit use /usr/local/zecurit_agent. The catalog's current Sigma generator emits Windows rules only; these OS-tagged artifacts also support platform-specific hunting.\n"
+        },
+        {
+          "Type": "ReportedInstallerSHA256",
+          "Value": "71e6f9bdc3f3c5564ade4e6d3c9afe582a6de8e4da9127d0dfd9f1674d15f40a"
+        },
+        {
+          "Type": "ReportedDeliveryContext",
+          "Value": "@patialavii reported a Zoom-themed phishing page delivering zoominstaller.exe. The following defanged URLs describe that report, not legitimate Zecurit infrastructure or general product indicators.\n"
+        },
+        {
+          "Type": "ReportedPhishingURL",
+          "Value": "hxxps://zoominvite-us09web-user08b.pages[.]dev/"
+        },
+        {
+          "Type": "ReportedDownloadURL",
+          "Value": "hxxps://s3-us-east-1.onlizard[.]com/8_BZotHyp-282q_v8NEAQ/default/zoominstaller.exe"
+        },
+        {
+          "Type": "InstallerPEMetadata",
+          "Value": "The reported outer installer identifies its ProductName as Zecurit Agent and FileDescription as Zecurit Agent Setup. CompanyName and OriginalFileName are blank. These fields identify the wrapper; they are not metadata for the extracted agent executables.\n"
+        },
+        {
+          "Type": "ObservedAgentServiceSHA256",
+          "Value": "d76c4053f7b369fa374b3c36c2c01b9c5630558e67b2cc3938ecf99192c13d75"
+        },
+        {
+          "Type": "ObservedRemoteToolsSHA256",
+          "Value": "132931f79ef7bda1c12bf231da8da45b2533eb74bdd336724f47923077cfef1c"
+        },
+        {
+          "Type": "ObservedScreenReaderServiceSHA256",
+          "Value": "b03fde83d90e27cb974c988cb6235167b2b05c6eacc1b7e529ef6fbac8adac69"
+        }
+      ]
+    },
+    "Detections": [],
+    "References": [
+      "https://zecurit.com/how-it-works/",
+      "https://zecurit.com/remote-access/",
+      "https://zecurit.com/remote-access/remote-troubleshooting-software/",
+      "https://zecurit.com/help/asset-management/device-enrollment/zecurit-agent-overview/",
+      "https://zecurit.com/help/asset-management/device-enrollment/manual-device-enrollment/enrollment-via-manual-download/",
+      "https://zecurit.com/help/asset-management/device-enrollment/silent-and-bulk-enrollment/enrollment-via-sccm/",
+      "https://zecurit.com/pricing/",
+      "https://x.com/patialavii/status/2102245788885622879",
+      "https://app.urlyze.io/scan/2cf6cdc9-4f7d-49c9-9755-7bd61d02a7a4"
+    ],
+    "Acknowledgement": [
+      {
+        "Person": "patialavii",
+        "Handle": "@patialavii"
+      }
+    ],
+    "CodeSigning": {
+      "search_names": [
+        "ZecuritAgentService.exe",
+        "ZecuritAgentRegister.exe",
+        "ZecuritRemoteTools.exe",
+        "ZecuritScreenReaderService.exe"
+      ],
+      "company_names": [],
+      "signer_names": [
+        "ZECURIT TECHNOLOGIES PRIVATE LIMITED"
+      ],
+      "certificates": [
+        {
+          "signer_name": "ZECURIT TECHNOLOGIES PRIVATE LIMITED",
+          "certificate_thumbprint": "6D9ED879ADC48C1B0EBA4058A5C6511A5DD07C63",
+          "issuer": "Sectigo Public Code Signing CA R36",
+          "valid_from": "2025-06-25T00:00:00Z",
+          "valid_to": "2028-06-24T23:59:59Z",
+          "tbs_sha256": "496497649dbae4d0277407e371c41975f6a763206e77c414b6345d72241dc826",
+          "tbs_sha1": "0b0f61752a097b27293749445532ab5f3972b46a",
+          "src_file_sha256": "d76c4053f7b369fa374b3c36c2c01b9c5630558e67b2cc3938ecf99192c13d75",
+          "src_file_path": "ZecuritAgentService.exe"
+        }
+      ]
+    },
+    "FileHashes": {
+      "authenticode": [
+        {
+          "file_name": "ZecuritAgentService.exe",
+          "sha256": "fe2b0aa4a6688cfb902172a7aaa9c481bd306e10f30364a732f5f53cf5e53774",
+          "sha1": null
+        },
+        {
+          "file_name": "ZecuritAgentRegister.exe",
+          "sha256": "e1a44899861cd16e5af6e4d44ffaf2a6242b83955972eb89fdb7a014a60a9162",
+          "sha1": null
+        },
+        {
+          "file_name": "ZecuritRemoteTools.exe",
+          "sha256": "3db45c6fb5488bcf722dccf3c3b1d066a631a97ed31253c52c957d6218ec1cfc",
+          "sha1": null
+        },
+        {
+          "file_name": "ZecuritScreenReaderService.exe",
+          "sha256": "d3ab0518f100bdfa5ff309c79ffef5d22ce454c0626e3d9105442dcc06c94cbc",
+          "sha1": null
+        }
+      ]
+    }
   },
   {
     "Name": "Sorillus",
@@ -12086,7 +12662,7 @@
     "Description": "PiTunnel is a cloud-hosted remote-access service primarily aimed at Raspberry Pi devices (sister product of Dataplicity from Wildfoundry) that exposes local services and a persistent remote shell through the `*.pitunnel.com` tenant infrastructure. The agent installs via a curl|sudo bash one-liner (`curl -s https://pitunnel.com/get/<TOKEN> | sudo bash`) and supports persistent named tunnels via flags like `pitunnel --port=<PORT> --name=vnc --persist`. After install the operator can open arbitrary local TCP listeners (SSH, RDP, VNC, web) to the PiTunnel cloud for inbound interactive access without any firewall change on the victim host. Catalogued by the LOTTunnels project under the \"shell access\" category.\n",
     "Author": "@MHaggis",
     "Created": "2026-05-18",
-    "LastModified": "2026-05-18",
+    "LastModified": "2026-09-22",
     "Details": {
       "Website": "https://www.pitunnel.com/",
       "PEMetadata": [
@@ -12166,16 +12742,8 @@
     },
     "Detections": [
       {
-        "Sigma": "https://github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/pitunnel_files_sigma.yml",
-        "Description": "Detects potential file activity of PiTunnel RMM tool"
-      },
-      {
         "Sigma": "https://github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/pitunnel_network_sigma.yml",
         "Description": "Detects potential network activity of PiTunnel RMM tool"
-      },
-      {
-        "Sigma": "https://github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/pitunnel_processes_sigma.yml",
-        "Description": "Detects potential process activity of PiTunnel RMM tool"
       }
     ],
     "References": [
@@ -13463,7 +14031,7 @@
     "Description": "Dataplicity (by Wildfoundry) is a cloud-hosted remote-access service that exposes Linux systems \u2014 primarily Raspberry Pi devices \u2014 to the Dataplicity cloud for browser-based remote shell, \"Wormhole\" HTTP tunneling, and remote management. The agent installs via a curl|sudo python one-liner (`curl -s https://www.dataplicity.com/<TOKEN>.py | sudo python`) and registers the host with the operator's tenant under `*.dataplicity.com`. After install the operator has persistent remote shell access through the Dataplicity web console or Windows companion app without any inbound firewall change on the victim host. Catalogued by the LOTTunnels project under the \"shell access\" category for exactly this abuse profile.\n",
     "Author": "@MHaggis",
     "Created": "2026-05-18",
-    "LastModified": "2026-05-18",
+    "LastModified": "2026-09-22",
     "Details": {
       "Website": "https://www.dataplicity.com/",
       "PEMetadata": [
@@ -13553,16 +14121,8 @@
     },
     "Detections": [
       {
-        "Sigma": "https://github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/dataplicity_files_sigma.yml",
-        "Description": "Detects potential file activity of Dataplicity RMM tool"
-      },
-      {
         "Sigma": "https://github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/dataplicity_network_sigma.yml",
         "Description": "Detects potential network activity of Dataplicity RMM tool"
-      },
-      {
-        "Sigma": "https://github.com/magicsword-io/LOLRMM/blob/main/detections/sigma/dataplicity_processes_sigma.yml",
-        "Description": "Detects potential process activity of Dataplicity RMM tool"
       }
     ],
     "References": [
@@ -23021,6 +23581,181 @@
         "Handle": "@ruppde"
       }
     ]
+  },
+  {
+    "Name": "RG System (RG Supervision)",
+    "Category": "RMM",
+    "Description": "RG System Suite is a commercial remote monitoring and management platform from Septeo IT Solutions, also known as RG Supervision. It provides endpoint monitoring, remote script execution, patch management, and remote-access workflows. An inspected Windows deployment-kit agent was distributed under the name Adobe_Helper.exe from a third-party download location while retaining RG Supervision product metadata and a valid RG System publisher signature. The filename is a masquerading lead, not proof of unauthorized access or of a particular actor. Vendor domains and normal installation artifacts identify the product and should be assessed against approved remote-management usage.\n",
+    "Author": "Michael Haag",
+    "Created": "2026-09-22",
+    "LastModified": "2026-09-22",
+    "Details": {
+      "Website": "https://www.rgsystem.septeo.com/",
+      "PEMetadata": [
+        {
+          "Filename": "RG_Supervision.exe",
+          "OriginalFileName": "rgsupvd",
+          "Description": "RG Supervision Agent",
+          "Product": "RG Supervision"
+        }
+      ],
+      "Privileges": "Administrator required for Windows agent installation",
+      "Free": false,
+      "Verification": "Vendor documentation establishes the management capabilities, deployment methods, service name, and example installation directory. Windows agent version 2.4.132 was inspected statically; its full-file SHA-256, PE metadata, Authenticode digest, and publisher signature were verified locally without executing the sample. A recorded download relationship preserves the Adobe_Helper.exe basename. Existing sandbox evidence corroborates the RG Systemes registry hierarchy, temporary rgsupv cache, and DNS lookup of lisa.rg-supervision.com; it does not demonstrate a completed installation or remote-control session. The inspected executable contains deployment-kit configuration; account and enrollment values are intentionally omitted. Linux and macOS support is vendor-documented. The Linux init-script artifact comes from legacy vendor documentation; it was not checked against a current package. macOS installation artifacts and Unix runtime behavior were not independently verified.\n",
+      "SupportedOS": [
+        "Windows",
+        "Linux",
+        "macOS"
+      ],
+      "Capabilities": [
+        "Endpoint monitoring and inventory",
+        "Remote script execution",
+        "Patch management",
+        "Remote access through native protocols or the optional Assist service"
+      ],
+      "Vulnerabilities": [],
+      "InstallationPaths": [
+        "C:\\Program Files (x86)\\RG-Supervision\\*",
+        "C:\\Program Files\\RG-Supervision\\*"
+      ]
+    },
+    "Artifacts": {
+      "Disk": [
+        {
+          "File": "*\\RG-Supervision\\RG_Supervision.exe",
+          "Description": "Product executable named in the inspected agent's copy-error string, scoped to the vendor's example installation directory; the installation path is configurable.",
+          "OS": "Windows"
+        },
+        {
+          "File": "*\\AppData\\Local\\Temp\\rgsupv\\cache\\prepared",
+          "Description": "Temporary cache artifact written by the inspected Windows sample in existing sandbox evidence.",
+          "OS": "Windows"
+        },
+        {
+          "File": "/etc/init.d/rgsupv",
+          "Description": "SysV init script installed from rgsupv-init in the vendor's Linux monitoring-agent instructions; legacy documented artifact, not evidence of a current systemd unit.",
+          "OS": "Linux"
+        }
+      ],
+      "EventLog": [],
+      "Registry": [
+        {
+          "Path": "HKLM\\SOFTWARE\\RG Systemes\\RG Supervision",
+          "Description": "Native-view Windows agent configuration hierarchy, corroborated by registry activity and embedded strings."
+        },
+        {
+          "Path": "HKLM\\SOFTWARE\\WOW6432Node\\RG Systemes\\RG Supervision",
+          "Description": "32-bit Windows agent configuration hierarchy, also documented for the expected-host-name network setting."
+        },
+        {
+          "Path": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\RG-Supervision",
+          "Description": "Windows service configuration key inferred from the RG-Supervision service name in vendor deployment scripts."
+        }
+      ],
+      "Network": [
+        {
+          "Description": "Agent host present in the inspected deployment-kit configuration and observed DNS queries; no completed connection was established by the reviewed traffic summary.",
+          "Domains": [
+            "lisa.rg-supervision.com"
+          ],
+          "Ports": []
+        },
+        {
+          "Description": "HTTPS API URL embedded in the inspected agent; static reference, not an observed connection.",
+          "Domains": [
+            "api.rg-supervision.com"
+          ],
+          "Ports": [
+            443
+          ]
+        },
+        {
+          "Description": "Vendor dashboard, agent download, and support endpoint documented by the vendor and embedded in the agent.",
+          "Domains": [
+            "dashboard.rg-supervision.com"
+          ],
+          "Ports": [
+            443
+          ]
+        }
+      ],
+      "Other": [
+        {
+          "Type": "ServiceName",
+          "Value": "RG-Supervision"
+        },
+        {
+          "Type": "DocumentedLinuxServiceName",
+          "Value": "rgsupv"
+        },
+        {
+          "Type": "InspectedWindowsAgentSHA256",
+          "Value": "076b561bddf88c1482feefb2cbbc11a82b7829528988fd246a6e4a245eb48e73"
+        },
+        {
+          "Type": "InspectedWindowsAgentVersion",
+          "Value": "2.4.132"
+        },
+        {
+          "Type": "DeploymentKitFormat",
+          "Value": "Embedded JSON deployment configuration delimited by ---BEGIN_BLOB--- and ---END_BLOB---; values are deployment-specific and excluded."
+        }
+      ]
+    },
+    "Detections": [],
+    "References": [
+      "https://bazaar.abuse.ch/sample/076b561bddf88c1482feefb2cbbc11a82b7829528988fd246a6e4a245eb48e73/",
+      "https://www.rgsystem.septeo.com/",
+      "https://info.rgsystem.fr/demande-demo",
+      "https://help.rgsystem.com/hc/en-us/articles/360020605399-Linux-Monitoring-agent",
+      "https://help.rgsystem.com/hc/en-us/articles/11614262449180-Deployment-Kits",
+      "https://help.rgsystem.com/hc/en-us/articles/360003611959-Deploying-the-agent-by-script",
+      "https://help.rgsystem.com/hc/en-us/articles/360003601340-Deploy-via-SFX-archive",
+      "https://help.rgsystem.com/hc/fr/articles/360016530440-Le-voisinage-r%C3%A9seau-en-d%C3%A9tail",
+      "https://help.rgsystem.com/hc/en-us/articles/360003611499-Remote-control-via-RDP-SSH-VNC",
+      "https://help.rgsystem.com/hc/en-us/articles/20039584263580-Windows-Update"
+    ],
+    "Acknowledgement": [
+      {
+        "Person": "patialavii",
+        "Handle": "@patialavii"
+      }
+    ],
+    "CodeSigning": {
+      "search_names": [
+        "rgsupvd",
+        "RG-Setup.exe"
+      ],
+      "company_names": [
+        "RG System"
+      ],
+      "signer_names": [
+        "RG Syst\u00e8mes SAS"
+      ],
+      "certificates": [
+        {
+          "signer_name": "RG Syst\u00e8mes SAS",
+          "certificate_thumbprint": "7E997EC20D1980963E55A567DE7B11ED4FA4D299",
+          "issuer": "DigiCert Trusted G4 Code Signing RSA4096 SHA384 2021 CA1",
+          "valid_from": "2026-01-20T00:00:00Z",
+          "valid_to": "2027-01-26T23:59:59Z",
+          "tbs_sha256": "33d53aa1aa53b316481aff57d550f4fb8a97581b92c700e9d3302cffa2bf3240",
+          "tbs_sha1": "9ac6af3876e4ebc5a25118fdc00b6b57a80ae2a6",
+          "src_file_sha256": "076b561bddf88c1482feefb2cbbc11a82b7829528988fd246a6e4a245eb48e73",
+          "src_file_path": "Adobe_Helper.exe",
+          "src_file_company": "RG System"
+        }
+      ]
+    },
+    "FileHashes": {
+      "authenticode": [
+        {
+          "file_name": "rgsupvd",
+          "sha256": "09d04663a7a6bb750241a3e84f7df599cbcf0b5fd28d273b749fe50515bcd9c3",
+          "sha1": null
+        }
+      ]
+    }
   },
   {
     "Name": "RES Automation Manager",
