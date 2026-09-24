@@ -182,3 +182,11 @@ d1m8kha1zyjal6.cloudfront.net
 lisa.rg-supervision.com
 api.rg-supervision.com
 dashboard.rg-supervision.com
+app-af-agent-prod-009.azurewebsites.net
+light-rmm-monitor-20260825.azurewebsites.net
+www.logistical-software.co.uk
+webserv.logistical-software.co.uk
+api.mremote.io
+blackcryptknight.com
+softbymade.top
+api.allocentra.co.za
