@@ -184,3 +184,45 @@ Mremote,domain,api.mremote.io,443,2026-09-24
 BlackCrypt RMM Agent,domain,blackcryptknight.com,,2026-09-24
 RMMCRAT,domain,softbymade.top,443,2026-09-24
 Allocentra,domain,api.allocentra.co.za,443,2026-09-24
+N-able N-central,domain,sis.n-able.com,"80,443,8443",2026-10-06
+N-able N-central,domain,update.n-able.com,443,2026-10-06
+N-able N-central,domain,releases.n-able.com,443,2026-10-06
+N-able N-central,domain,feeds.n-able.com,443,2026-10-06
+N-able N-central,domain,*.prd.cdo.system-monitor.com,443,2026-10-06
+N-able N-central,domain,eb.eu-west-1.prd.davinci.system-monitor.com,443,2026-10-06
+N-able N-central,domain,eb.us-west-2.prd.davinci.system-monitor.com,443,2026-10-06
+N-able N-central,domain,eb.ap-southeast-2.prd.davinci.system-monitor.com,443,2026-10-06
+N-able N-central,domain,eb.eu-central-1.prd.davinci.system-monitor.com,443,2026-10-06
+N-able N-central,domain,a33d8yamkwy4nx-ats.iot.eu-west-1.amazonaws.com,8088,2026-10-06
+N-able N-central,domain,a33d8yamkwy4nx-ats.iot.us-west-2.amazonaws.com,8088,2026-10-06
+N-able N-central,domain,a33d8yamkwy4nx-ats.iot.eu-central-1.amazonaws.com,8088,2026-10-06
+N-able N-central,domain,a33d8yamkwy4nx-ats.iot.ap-southeast-2.amazonaws.com,8088,2026-10-06
+N-able N-central,domain,swi-rc.cdn-sw.net,443,2026-10-06
+N-able N-central,domain,comserver.global.mspa.n-able.com,443,2026-10-06
+N-able N-central,domain,comserver.us1.mspa.n-able.com,443,2026-10-06
+N-able N-central,domain,comserver.us2.mspa.n-able.com,443,2026-10-06
+N-able N-central,domain,comserver.eu1.mspa.n-able.com,443,2026-10-06
+Vicarius vRx,domain,*.vicarius.cloud,443,2026-10-06
+Vicarius vRx,domain,vicarius-installer.s3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-patches.s3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-release.s3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-release.s3.us-east-1.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-static-organizationinstallations.vicarius-cdn.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-eu-central-1-installer.s3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-eu-central-1-installer.s3.eu-central-1.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-eu-central-1-patches.s3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-eu-central-1-patches.s3.eu-central-1.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-eu-central-1-release.s3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-eu-central-1-release.s3.eu-central-1.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-ap-southeast-3-installer.s3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-ap-southeast-3-installer.s3.ap-southeast-3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-ap-southeast-3-patches.s3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-ap-southeast-3-patches.s3.ap-southeast-3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-ap-southeast-3-release.s3.amazonaws.com,443,2026-10-06
+Vicarius vRx,domain,vicarius-ap-southeast-3-release.s3.ap-southeast-3.amazonaws.com,443,2026-10-06
+Overlord,domain,*.ngrok-free.app,"443,5173",2026-10-06
+Overlord,domain,*.ngrok.app,"443,5173",2026-10-06
+Overlord,domain,*.ngrok.io,"443,5173",2026-10-06
+Overlord,domain,*.ngrok.com,"443,5173",2026-10-06
+Overlord,domain,pandoramods.top,"443,5173",2026-10-06
+Overlord,domain,savaliyapriyal874-code.github.io,"443,5173",2026-10-06
