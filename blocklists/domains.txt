@@ -232,3 +232,4 @@ vicarius-ap-southeast-3-release.s3.ap-southeast-3.amazonaws.com
 *.ngrok.com
 pandoramods.top
 savaliyapriyal874-code.github.io
+cloud.nsecsoft.com
